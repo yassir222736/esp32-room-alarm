@@ -9,9 +9,12 @@ niets extra te kopen. Een **ultrasone "struikeldraad"** bij de deur en een **bew
 detecteren wie binnenkomt. Het alarm knippert als een politieauto, speelt je **eigen mp3** af op je gsm, houdt een
 **logboek** bij en stuurt een **pushmelding** naar je gsm.
 
-<p align="center">
-  <img src="docs/img/webpagina.png" alt="Webpagina van het kameralarm op een gsm" width="300">
-</p>
+<table>
+  <tr>
+    <td align="center" width="62%"><img src="docs/img/eindresultaat.jpg" alt="Het gebouwde kameralarm: ESP32, twee breadboards, ultrasone sensor, PIR, IR-ontvanger en afstandsbediening"><br><sub><b>Het eindresultaat</b> – volledig op breadboards, alleen onderdelen uit de starterset</sub></td>
+    <td align="center" width="38%"><img src="docs/img/webpagina.png" alt="Webpagina van het kameralarm op een gsm"><br><sub><b>De webpagina</b> op je gsm</sub></td>
+  </tr>
+</table>
 
 ## Functies
 
