@@ -1,0 +1,10 @@
+# PlatformIO / editors
+.pio/
+.vscode/
+
+# Persoonlijke instellingen (wifi, pincode, ntfy-topic) – NOOIT committen
+include/secrets.h
+
+# Python
+__pycache__/
+*.pyc

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11141a">
+  <title>Kameralarm</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>🚨 Kameralarm</h1>
+    <span id="conn" class="conn off" title="Verbinding">●</span>
+  </header>
+
+  <main>
+    <section id="statusCard" class="card status" data-state="uit">
+      <div class="state-label">Status</div>
+      <div id="stateText" class="state-text">…</div>
+      <div id="countdown" class="countdown"></div>
+      <button id="armBtn" class="big-btn">Inschakelen</button>
+    </section>
+
+    <section class="card">
+      <button id="soundBtn" class="sound-btn">🔊 Geluid op dit toestel inschakelen</button>
+      <p class="hint">Browsers spelen pas geluid af na één tik. Laat deze pagina open om het alarm hier te horen.</p>
+    </section>
+
+    <section class="card">
+      <h2>Sensor live</h2>
+      <div class="meter"><div id="meterBar" class="meter-bar"></div><div id="meterBase" class="meter-base"></div></div>
+      <div class="grid2">
+        <div><span class="k">Afstand</span><span id="distance" class="v">–</span></div>
+        <div><span class="k">Basisafstand</span><span id="baseline" class="v">–</span></div>
+        <div><span class="k">Bewegingssensor</span><span id="pir" class="v">–</span></div>
+        <div><span class="k">Binnenkomsten</span><span id="entries" class="v">–</span></div>
+      </div>
+      <button id="calBtn" class="btn">📏 Basisafstand opnieuw meten</button>
+    </section>
+
+    <section class="card">
+      <h2>Logboek <span id="logCount" class="badge"></span></h2>
+      <ul id="log" class="log"></ul>
+      <button id="clearLogBtn" class="btn danger small">Logboek wissen</button>
+    </section>
+
+    <section class="card">
+      <h2>Alarmgeluid (mp3)</h2>
+      <p id="soundInfo" class="hint"></p>
+      <input id="mp3" type="file" accept="audio/mpeg,.mp3">
+      <div class="row">
+        <button id="uploadBtn" class="btn">⬆️ Uploaden</button>
+        <button id="previewBtn" class="btn">▶️ Beluisteren</button>
+        <button id="deleteSoundBtn" class="btn danger">🗑️</button>
+      </div>
+      <progress id="uploadProgress" max="100" value="0" hidden></progress>
+    </section>
+
+    <details class="card">
+      <summary><h2>Instellingen</h2></summary>
+      <form id="settingsForm">
+        <label>Drempel (cm afwijking) <input name="thresholdCm" type="number" min="5" max="200"></label>
+        <label>Metingen op rij <input name="confirmCount" type="number" min="1" max="10"></label>
+        <label class="check"><input name="pirConfirm" type="checkbox"> Bewegingssensor moet bevestigen</label>
+        <label>PIR-tijdvenster (s) <input name="pirWindowS" type="number" min="2" max="60"></label>
+        <label>Vertrektijd (s) <input name="exitDelayS" type="number" min="5" max="300"></label>
+        <label>Vooralarm (s) <input name="entryDelayS" type="number" min="0" max="120"></label>
+        <label>Alarmduur (s) <input name="alarmDurationS" type="number" min="10" max="900"></label>
+        <label class="check"><input name="buzzerEnabled" type="checkbox"> Zoemer op het apparaat</label>
+        <button class="btn" type="submit">💾 Opslaan</button>
+      </form>
+    </details>
+
+    <details class="card">
+      <summary><h2>Extra</h2></summary>
+      <p class="hint">Aan/uit-knop afstandsbediening: <code id="irCode">–</code></p>
+      <button id="irLearnBtn" class="btn">📡 Andere knop leren</button>
+      <button id="testNotifyBtn" class="btn">📱 Testmelding naar gsm</button>
+      <button id="logoutBtn" class="btn small">Pincode vergeten op dit toestel</button>
+    </details>
+  </main>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <dialog id="pinDialog">
+    <form method="dialog" id="pinForm">
+      <h2>Pincode</h2>
+      <input id="pinInput" type="password" inputmode="numeric" autocomplete="off" placeholder="••••">
+      <menu><button value="cancel" class="btn small">Annuleren</button><button id="pinOk" value="ok" class="btn">OK</button></menu>
+    </form>
+  </dialog>
+
+  <audio id="alarmAudio" loop preload="auto"></audio>
+  <script src="app.js"></script>
+</body>
+</html>
